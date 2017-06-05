@@ -24,6 +24,6 @@ add_action( 'plugins_loaded', '<%= pluginSlug %>_loader' );
 function <%= pluginSlug %>_loader() {
 
 	// Remember the text domain.
-	load_plugin_textdomain( '<%= textDomain %>', false, dirname( dirname( __FILE__ ) ) . '/lang' );
+	load_plugin_textdomain( '<%= textDomain %>', false, dirname( dirname( __FILE__ ) ) . '/languages' );
 
 }

@@ -95,7 +95,7 @@ module.exports = function (grunt) {
 				target: {
 					options: {
 						type:        'wp-plugin',
-						domainPath:  '/lang',
+						domainPath:  '/languages',
 						mainFile:    '<%= textDomain %>.php',
 						potFilename: '<%= textDomain %>.pot'
 					}
