@@ -58,14 +58,14 @@ module.exports = class extends Generator {
 			this.pluginName  = answers.pluginName;
 			this.description = answers.description;
 			this.projectHome = answers.projectHome;
-			this.unitName    = answers.unitName;
 			this.authorName  = answers.authorName;
 			this.authorEmail = answers.authorEmail;
 			this.authorUrl   = answers.authorUrl;
 
-			this.pluginSlug = noCase(this.unitName + '-' + this.pluginName, null, '-').toLowerCase();
-			this.pluginConst = noCase(this.unitName + '-' + this.pluginName, null, '_').toUpperCase();
-			this.pluginSlug.toLowerCase();
+			this.pluginSlug  = noCase(answers.unitName.toLowerCase() + '-' + answers.pluginName.toLowerCase(), null, '_');
+			this.textDomain  = noCase(answers.unitName.toLowerCase() + '-' + answers.pluginName.toLowerCase(), null, '-');
+			this.pluginConst = noCase(answers.unitName.toUpperCase() + '_' + answers.pluginName.toUpperCase(), null, '_').toUpperCase();
+			this.packageName = answers.unitName + '\\' + noCase(answers.pluginName, null, '_');
 
 			done();
 		});
