@@ -1,13 +1,14 @@
 'use strict';
 const Generator = require('yeoman-generator');
+const noCase    = require('no-case');
 
 module.exports = class extends Generator {
 
 	prompting() {
 
-		let done = this.async();
+		const done = this.async();
 
-		let questions = [
+		const questions = [
 			{
 				type:    'input',
 				name:    'pluginName',
@@ -22,6 +23,7 @@ module.exports = class extends Generator {
 				default: 'My awesome WordPress plugin'
 			},
 			{
+				type:    'input',
 				name:    'projectHome',
 				message: 'Project homepage',
 				default: 'https://ufhealth.org/'
@@ -33,28 +35,40 @@ module.exports = class extends Generator {
 				default: 'ufhealth'
 			},
 			{
+				type:    'input',
 				name:    'authorName',
 				message: 'Author name',
 				default: this.user.git.name
 			},
 			{
+				type:    'input',
 				name:    'authorEmail',
 				message: 'Author email',
 				default: this.user.git.email
 			},
 			{
+				type:    'input',
 				name:    'authorUrl',
 				message: 'Author URL',
 				default: 'https://ufhealth.org/'
 			}
 		];
 
-		return this.prompt(questions, function (answers) {
-			this.pluginName = answers.pluginName;
-			this.authorName = answers.authorName;
-			this.log(answers);
+		this.prompt(questions).then((answers) => {
+			this.pluginName  = answers.pluginName;
+			this.description = answers.description;
+			this.projectHome = answers.projectHome;
+			this.unitName    = answers.unitName;
+			this.authorName  = answers.authorName;
+			this.authorEmail = answers.authorEmail;
+			this.authorUrl   = answers.authorUrl;
+
+			this.pluginSlug = noCase(this.unitName + '-' + this.pluginName, null, '-').toLowerCase();
+			this.pluginConst = noCase(this.unitName + '-' + this.pluginName, null, '_').toUpperCase() + '_';
+			this.pluginSlug.toLowerCase();
+
 			done();
-		}.bind(this));
+		});
 
 	}
 
@@ -63,7 +77,7 @@ module.exports = class extends Generator {
 		this.fs.copyTpl(
 			this.templatePath('_package.json'),
 			this.destinationPath('package.json'), {
-				pluginName: this.props.pluginName,
+				pluginSlug: this.pluginSlug,
 				authorName: this.authorName
 			}
 		);
