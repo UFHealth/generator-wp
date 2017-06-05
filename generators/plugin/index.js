@@ -97,6 +97,11 @@ module.exports = class extends Generator {
 			this.destinationPath('.travis.yml')
 		);
 
+		this.fs.copy(
+			this.templatePath('_phpcs.xml'),
+			this.destinationPath('phpcs.xml')
+		);
+
 		this.fs.copyTpl(
 			this.templatePath('_bootstrap.php'),
 			this.destinationPath('bootstrap.php'), {
