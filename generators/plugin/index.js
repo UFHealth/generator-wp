@@ -64,7 +64,7 @@ module.exports = class extends Generator {
 			this.authorUrl   = answers.authorUrl;
 
 			this.pluginSlug = noCase(this.unitName + '-' + this.pluginName, null, '-').toLowerCase();
-			this.pluginConst = noCase(this.unitName + '-' + this.pluginName, null, '_').toUpperCase() + '_';
+			this.pluginConst = noCase(this.unitName + '-' + this.pluginName, null, '_').toUpperCase();
 			this.pluginSlug.toLowerCase();
 
 			done();
