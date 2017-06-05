@@ -139,5 +139,12 @@ module.exports = class extends Generator {
 				authorEmail: this.authorEmail
 			}
 		);
+
+		this.fs.copyTpl(
+			this.templatePath('_Gruntfile.js'),
+			this.destinationPath('Gruntfile.js'), {
+				textDomain:  this.textDomain
+			}
+		);
 	}
 };
