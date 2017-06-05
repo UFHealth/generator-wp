@@ -8,10 +8,14 @@
 	"dependencies": {
 		"yeoman-generator": "^1.1.1"
 	},
+	"files": [
+		"generators"
+	],
 	"author": {
 		"name": "Chris Wiegman",
 		"email": "cwiegman@ufl.edu",
 		"url": "https://ufhealth.org/"
 	},
+	"repository": "https://gitlab.ahc.ufl.edu/WebServices/generator-wp",
 	"license": "MIT"
 }
