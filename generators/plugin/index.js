@@ -154,5 +154,15 @@ module.exports = class extends Generator {
 				description: this.description
 			}
 		);
+
+		this.fs.copyTpl(
+			this.templatePath('_uninstall.php'),
+			this.destinationPath('uninstall.php'), {
+				pluginName:  this.pluginName,
+				packageName: this.packageName,
+				authorName:  this.authorName,
+				authorEmail: this.authorEmail
+			}
+		);
 	}
 };
