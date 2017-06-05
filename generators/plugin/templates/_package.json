@@ -1,5 +1,5 @@
 {
-	"name": "<%= pluginSlug %>",
+	"name": "<%= textDomain %>",
 	"private": true,
 	"devDependencies": {
 		"grunt": "~1.0.1",
@@ -17,6 +17,6 @@
 	"author": "<%= authorName %>",
 	"repository": {
 		"type": "git",
-		"url": "https://gitlab.ahc.ufl.edu/WebServices/WordPress-Plugins/<%= pluginSlug %>"
+		"url": "https://gitlab.ahc.ufl.edu/WebServices/WordPress-Plugins/<%= textDomain %>"
 	}
 }
