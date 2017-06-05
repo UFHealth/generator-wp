@@ -103,5 +103,20 @@ module.exports = class extends Generator {
 				pluginConst: this.pluginConst
 			}
 		);
+
+		this.fs.copyTpl(
+			this.templatePath('_index.php'),
+			this.destinationPath(this.textDomain + '.php'), {
+				pluginName:  this.pluginName,
+				description: this.description,
+				projectHome: this.projectHome,
+				textDomain:  this.textDomain,
+				pluginSlug:  this.pluginSlug,
+				authorName:  this.authorName,
+				authorUrl:   this.authorUrl,
+				pluginConst: this.pluginConst,
+				packageName: this.packageName
+			}
+		);
 	}
 };
