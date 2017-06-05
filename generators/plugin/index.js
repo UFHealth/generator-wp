@@ -98,6 +98,11 @@ module.exports = class extends Generator {
 		);
 
 		this.fs.copy(
+			this.templatePath('_phpunit.xml'),
+			this.destinationPath('phpunit.xml')
+		);
+
+		this.fs.copy(
 			this.templatePath('_phpcs.xml'),
 			this.destinationPath('phpcs.xml')
 		);
