@@ -1,7 +1,5 @@
 'use strict';
-const path      = require('path');
 const Generator = require('yeoman-generator');
-const superb    = require('superb');
 
 module.exports = class extends Generator {
 
@@ -53,7 +51,7 @@ module.exports = class extends Generator {
 
 		this.prompt(questions, function (answers) {
 			this.props = answers;
-			this.log(answers.pluginName);
+			this.log(answers);
 			done();
 		}.bind(this));
 
@@ -61,30 +59,11 @@ module.exports = class extends Generator {
 
 	writing() {
 
-		const generatorName = this.fs.readJSON(this.destinationPath('package.json')).name;
-
 		this.fs.copyTpl(
-			this.templatePath('index.js'),
-
-			this.destinationPath(path.join('generators', this.options.name, 'index.js')),
-			{
-				// Escape apostrophes from superb to not conflict with JS strings
-				superb: superb().replace('\'', '\\\''),
-				generatorName
-			}
-		);
-
-		this.fs.copy(
-			this.templatePath('templates/**'),
-			this.destinationPath(path.join('generators', this.options.name, 'templates'))
-		);
-
-		this.fs.copyTpl(
-			this.templatePath('test.js'),
-			this.destinationPath('__tests__/' + this.options.name + '.js'),
-			{
-				name: this.options.name,
-				generatorName
+			this.templatePath('_package.json'),
+			this.destinationPath('package.json'), {
+				pluginName: this.props.pluginName,
+				authorName: this.props.authorName
 			}
 		);
 	}
