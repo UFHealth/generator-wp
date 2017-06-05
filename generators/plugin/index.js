@@ -143,7 +143,15 @@ module.exports = class extends Generator {
 		this.fs.copyTpl(
 			this.templatePath('_Gruntfile.js'),
 			this.destinationPath('Gruntfile.js'), {
-				textDomain:  this.textDomain
+				textDomain: this.textDomain
+			}
+		);
+
+		this.fs.copyTpl(
+			this.templatePath('_README.md'),
+			this.destinationPath('README.md'), {
+				pluginName:  this.pluginName,
+				description: this.description
 			}
 		);
 	}
