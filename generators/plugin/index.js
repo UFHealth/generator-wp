@@ -32,7 +32,7 @@ module.exports = class extends Generator {
 				type:    'input',
 				name:    'unitName',
 				message: 'Your unit abbreviation',
-				default: 'ufhealth'
+				default: 'UFHealth'
 			},
 			{
 				type:    'input',
