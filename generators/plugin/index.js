@@ -81,5 +81,27 @@ module.exports = class extends Generator {
 				authorName: this.authorName
 			}
 		);
+
+		this.fs.copy(
+			this.templatePath('_.gitignore'),
+			this.destinationPath('.gitignore')
+		);
+
+		this.fs.copy(
+			this.templatePath('_.jshintrc'),
+			this.destinationPath('.jshintrc')
+		);
+
+		this.fs.copy(
+			this.templatePath('_.travis.yml'),
+			this.destinationPath('.travis.yml')
+		);
+
+		this.fs.copyTpl(
+			this.templatePath('_bootstrap.php'),
+			this.destinationPath('bootstrap.php'), {
+				pluginConst: this.pluginConst
+			}
+		);
 	}
 };
