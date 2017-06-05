@@ -49,8 +49,9 @@ module.exports = class extends Generator {
 			}
 		];
 
-		this.prompt(questions, function (answers) {
-			this.props = answers;
+		return this.prompt(questions, function (answers) {
+			this.pluginName = answers.pluginName;
+			this.authorName = answers.authorName;
 			this.log(answers);
 			done();
 		}.bind(this));
@@ -63,7 +64,7 @@ module.exports = class extends Generator {
 			this.templatePath('_package.json'),
 			this.destinationPath('package.json'), {
 				pluginName: this.props.pluginName,
-				authorName: this.props.authorName
+				authorName: this.authorName
 			}
 		);
 	}
