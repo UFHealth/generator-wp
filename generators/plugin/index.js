@@ -77,7 +77,7 @@ module.exports = class extends Generator {
 		this.fs.copyTpl(
 			this.templatePath('_package.json'),
 			this.destinationPath('package.json'), {
-				pluginSlug: this.pluginSlug,
+				textDomain: this.textDomain,
 				authorName: this.authorName
 			}
 		);
