@@ -118,5 +118,16 @@ module.exports = class extends Generator {
 				packageName: this.packageName
 			}
 		);
+
+		this.fs.copyTpl(
+			this.templatePath('_composer.json'),
+			this.destinationPath('composer.json'), {
+				description: this.description,
+				textDomain:  this.textDomain,
+				authorName:  this.authorName,
+				authorUrl:   this.authorUrl,
+				authorEmail: this.authorEmail
+			}
+		);
 	}
 };
