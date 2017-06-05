@@ -9,15 +9,51 @@ module.exports = class extends Generator {
 
 		let done = this.async();
 
-		this.prompt({
-			            type:    'input',
-			            name:    'name',
-			            message: 'Your project name',
-			            //Defaults to the project's folder name if the input is skipped
-			            default: this.appname
-		            }, function (answers) {
+		let questions = [
+			{
+				type:    'input',
+				name:    'pluginName',
+				message: 'The Plugin Name',
+				//Defaults to the project's folder name if the input is skipped
+				default: this.appname
+			},
+			{
+				type:    'input',
+				name:    'description',
+				message: 'Description',
+				default: 'My awesome WordPress plugin'
+			},
+			{
+				name:    'projectHome',
+				message: 'Project homepage',
+				default: 'https://ufhealth.org/'
+			},
+			{
+				type:    'input',
+				name:    'unitName',
+				message: 'Your unit abbreviation',
+				default: 'ufhealth'
+			},
+			{
+				name:    'authorName',
+				message: 'Author name',
+				default: this.user.git.name
+			},
+			{
+				name:    'authorEmail',
+				message: 'Author email',
+				default: this.user.git.email
+			},
+			{
+				name:    'authorUrl',
+				message: 'Author URL',
+				default: 'https://ufhealth.org/'
+			}
+		];
+
+		this.prompt(questions, function (answers) {
 			this.props = answers;
-			this.log(answers.name);
+			this.log(answers.pluginName);
 			done();
 		}.bind(this));
 
