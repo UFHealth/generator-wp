@@ -107,6 +107,11 @@ module.exports = class extends Generator {
 			this.destinationPath('phpcs.xml')
 		);
 
+		this.fs.copy(
+			this.templatePath('_.githold'),
+			this.destinationPath('includes/.githold')
+		);
+
 		this.fs.copyTpl(
 			this.templatePath('_bootstrap.php'),
 			this.destinationPath('bootstrap.php'), {
