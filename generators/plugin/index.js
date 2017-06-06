@@ -169,5 +169,12 @@ module.exports = class extends Generator {
 				authorEmail: this.authorEmail
 			}
 		);
+
+		this.fs.copyTpl(
+			this.templatePath('_TestCase.php'),
+			this.destinationPath('tests/phpunit/test-tools/TestCase.php'), {
+				packageName: this.packageName
+			}
+		);
 	}
 };
