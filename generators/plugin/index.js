@@ -176,5 +176,15 @@ module.exports = class extends Generator {
 				packageName: this.packageName
 			}
 		);
+
+		this.fs.copyTpl(
+			this.templatePath('_plugin.scss'),
+			this.destinationPath('assets/css/scss/' + this.textDomain + '.scss'), {
+				pluginName:  this.pluginName,
+				projectHome: this.projectHome,
+				authorName:  this.authorName,
+			}
+		);
+
 	}
 };
