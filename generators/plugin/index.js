@@ -186,5 +186,14 @@ module.exports = class extends Generator {
 			}
 		);
 
+		this.fs.copyTpl(
+			this.templatePath('_plugin.js'),
+			this.destinationPath('assets/js/src/' + this.textDomain + '.js'), {
+				pluginName:  this.pluginName,
+				projectHome: this.projectHome,
+				authorName:  this.authorName,
+			}
+		);
+
 	}
 };
