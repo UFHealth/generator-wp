@@ -93,8 +93,8 @@ module.exports = class extends Generator {
 		);
 
 		this.fs.copy(
-			this.templatePath('_.travis.yml'),
-			this.destinationPath('.travis.yml')
+			this.templatePath('_.gitlab-ci.yml'),
+			this.destinationPath('.gitlab-ci.yml')
 		);
 
 		this.fs.copy(
