@@ -52,6 +52,9 @@ $ yo wp:plugin
 
 ## Changelog
 
+#### 1.0.2
+* Add unit to plugin display name for easier sorting in WordPress dashboard
+
 #### 1.0.1
 * Replace Travis template with GitLab CI template
 * Fix: Make sure source assets are not caught up in .gitignore.

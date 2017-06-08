@@ -31,8 +31,8 @@ module.exports = class extends Generator {
 			{
 				type:    'input',
 				name:    'unitName',
-				message: 'Your unit abbreviation',
-				default: 'UFHealth'
+				message: 'Your unit name (use abbreviation, ie. ESE, if anything but UF Health)',
+				default: 'UF Health'
 			},
 			{
 				type:    'input',
@@ -55,17 +55,19 @@ module.exports = class extends Generator {
 		];
 
 		this.prompt(questions).then((answers) => {
-			this.pluginName  = answers.pluginName;
+			this.pluginName  = answers.unitName + ' ' + answers.pluginName;
 			this.description = answers.description;
 			this.projectHome = answers.projectHome;
 			this.authorName  = answers.authorName;
 			this.authorEmail = answers.authorEmail;
 			this.authorUrl   = answers.authorUrl;
 
-			this.pluginSlug  = noCase(answers.unitName.toLowerCase() + '-' + answers.pluginName.toLowerCase(), null, '_');
-			this.textDomain  = noCase(answers.unitName.toLowerCase() + '-' + answers.pluginName.toLowerCase(), null, '-');
-			this.pluginConst = noCase(answers.unitName.toUpperCase() + '_' + answers.pluginName.toUpperCase(), null, '_').toUpperCase();
-			this.packageName = answers.unitName + '\\' + noCase(answers.pluginName, null, '_');
+			let unitAbbr = answers.unitName.replace(/ /g, '');
+
+			this.pluginSlug  = noCase(unitAbbr.toLowerCase() + '-' + answers.pluginName.toLowerCase(), null, '_');
+			this.textDomain  = noCase(unitAbbr.toLowerCase() + '-' + answers.pluginName.toLowerCase(), null, '-');
+			this.pluginConst = noCase(unitAbbr.toUpperCase() + '_' + answers.pluginName.toUpperCase(), null, '_').toUpperCase();
+			this.packageName = unitAbbr + '\\' + noCase(answers.pluginName, null, '_');
 
 			done();
 		});
@@ -182,7 +184,7 @@ module.exports = class extends Generator {
 			this.destinationPath('assets/css/scss/' + this.textDomain + '.scss'), {
 				pluginName:  this.pluginName,
 				projectHome: this.projectHome,
-				authorName:  this.authorName,
+				authorName:  this.authorName
 			}
 		);
 
@@ -191,7 +193,7 @@ module.exports = class extends Generator {
 			this.destinationPath('assets/js/src/' + this.textDomain + '.js'), {
 				pluginName:  this.pluginName,
 				projectHome: this.projectHome,
-				authorName:  this.authorName,
+				authorName:  this.authorName
 			}
 		);
 
