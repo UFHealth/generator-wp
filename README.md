@@ -52,5 +52,8 @@ $ yo wp:plugin
 
 ## Changelog
 
+#### 1.1
+* Replace Travis template with GitLab CI template
+
 #### 1.0
 * Initial release
