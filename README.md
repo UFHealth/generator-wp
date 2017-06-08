@@ -54,6 +54,7 @@ $ yo wp:plugin
 
 #### 1.1
 * Replace Travis template with GitLab CI template
+* Fix: Make sure source assets are not caught up in .gitignore.
 
 #### 1.0
 * Initial release
