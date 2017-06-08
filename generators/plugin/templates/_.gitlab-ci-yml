@@ -1,0 +1,33 @@
+variables:
+  GIT_SSL_NO_VERIFY: 'true'
+
+before_script:
+# Install git, the php image doesn't have installed
+- apt-get update -yqq
+- apt-get install git libxml2-dev unzip -yqq
+# Install composer
+- curl -sS https://getcomposer.org/installer | php
+
+stages:
+  - build
+  - test
+
+build_assets:
+  stage: build
+  image: php:7.1
+  script:
+    - php composer.phar install
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - vendor/
+  cache:
+      paths:
+        - vendor/
+
+# Test PHP 7.1
+test:7.1:
+  stage: test
+  image: php:7.1
+  script:
+  - vendor/bin/phpunit --configuration phpunit.xml
