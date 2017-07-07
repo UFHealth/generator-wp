@@ -17,6 +17,6 @@
 	"author": "<%= authorName %>",
 	"repository": {
 		"type": "git",
-		"url": "https://gitlab.ahc.ufl.edu/WebServices/WordPress-Plugins/<%= textDomain %>"
+		"url": "<%= repoLocation %>"
 	}
 }

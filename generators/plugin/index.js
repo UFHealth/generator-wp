@@ -24,6 +24,11 @@ module.exports = class extends Generator {
 			},
 			{
 				type:    'input',
+				name:    'repoLocation',
+				message: 'GIT Repository'
+			},
+			{
+				type:    'input',
 				name:    'projectHome',
 				message: 'Project homepage',
 				default: 'https://ufhealth.org/'
@@ -79,8 +84,9 @@ module.exports = class extends Generator {
 		this.fs.copyTpl(
 			this.templatePath('_package.json'),
 			this.destinationPath('package.json'), {
-				textDomain: this.textDomain,
-				authorName: this.authorName
+				textDomain:   this.textDomain,
+				authorName:   this.authorName,
+				repoLocation: this.authorName
 			}
 		);
 

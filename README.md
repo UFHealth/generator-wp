@@ -48,9 +48,15 @@ $ cs [my-plugin-dir]
 $ yo wp:plugin
 ```
 
+For information on developing and using a generated plugin see the README.md file within after generating.
+
 **More project types coming soon**
 
 ## Changelog
+
+#### 1.1
+* Added Full GIT repository address to generated plugin.
+* Added usage and build instructions to the readme.md file of generated plugins.
 
 #### 1.0.2
 * Add unit to plugin display name for easier sorting in WordPress dashboard
