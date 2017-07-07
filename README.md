@@ -48,6 +48,8 @@ $ cs [my-plugin-dir]
 $ yo wp:plugin
 ```
 
+For information on developing and using a generated plugin see the README.md file within after generating.
+
 **More project types coming soon**
 
 ## Changelog
