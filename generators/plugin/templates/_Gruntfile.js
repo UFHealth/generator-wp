@@ -10,6 +10,24 @@ module.exports = function (grunt) {
 		{
 
 			/**
+			 * Clean existing files
+			 */
+			clean: {
+				styles:  {
+					src: [
+						'assets/css/*.css',
+						'assets/css/*.map'
+					]
+				},
+				scripts: {
+					src: [
+						'assets/js/*.js',
+						'assets/js/*.map'
+					]
+				}
+			},
+
+			/**
 			 * Processes and compresses JavaScript.
 			 */
 			uglify: {
@@ -19,6 +37,7 @@ module.exports = function (grunt) {
 					options: {
 						beautify:         false,
 						preserveComments: false,
+						sourceMap:        false,
 						mangle:           {
 							reserved: ['jQuery']
 						}
@@ -26,6 +45,24 @@ module.exports = function (grunt) {
 
 					files: {
 						'assets/js/<%= textDomain %>.min.js': [
+							'assets/js/src/<%= textDomain %>.js'
+						]
+					}
+				},
+
+				dev: {
+
+					options: {
+						beautify:         true,
+						preserveComments: true,
+						sourceMap:        true,
+						mangle:           {
+							reserved: ['jQuery']
+						}
+					},
+
+					files: {
+						'assets/js/<%= textDomain %>.js': [
 							'assets/js/src/<%= textDomain %>.js'
 						]
 					}
@@ -162,7 +199,7 @@ module.exports = function (grunt) {
 	);
 
 	// A very basic default task.
-	grunt.registerTask('default', ['phpunit', 'jshint', 'uglify:production', 'sass', 'autoprefixer', 'cssmin', 'makepot']);
+	grunt.registerTask('default', ['phpunit', 'jshint', 'uglify:production', 'uglify:dev', 'sass', 'autoprefixer', 'cssmin', 'makepot']);
 	grunt.registerTask('dev', ['default', 'watch']);
 
 };
