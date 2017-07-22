@@ -54,6 +54,10 @@ For information on developing and using a generated plugin see the README.md fil
 
 ## Changelog
 
+#### 1.2
+* Add Grunt clean to plugin grunt processes
+* Add dev and prod versions of compiled JS with appropriate mappings
+
 #### 1.1.1
 * Cleanup package versions in package.json
 * Ignore vendor folder in .pot generation

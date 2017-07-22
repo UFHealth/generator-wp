@@ -1,24 +1,24 @@
 {
-	"name": "generator-wp",
-	"version": "1.0.0",
-	"description": "WordPress scaffolding generator for use within UF Health properties.",
-	"keywords": [
-		"yeoman-generator"
-	],
-	"dependencies": {
-		"chalk": "^1.1.3",
-		"extendable-yeoman": "^0.3.1",
-		"no-case": "^2.3.1",
-		"yeoman-generator": "^1.1.1"
-	},
-	"files": [
-		"generators"
-	],
-	"author": {
-		"name": "Chris Wiegman",
-		"email": "cwiegman@ufl.edu",
-		"url": "https://ufhealth.org/"
-	},
-	"repository": "https://gitlab.ahc.ufl.edu/WebServices/generator-wp",
-	"license": "MIT"
+  "name": "generator-wp",
+  "description": "WordPress scaffolding generator for use within UF Health properties.",
+  "keywords": [
+    "yeoman-generator",
+    "wordpress"
+  ],
+  "dependencies": {
+    "chalk": "2.0.1",
+    "extendable-yeoman": "0.3.1",
+    "no-case": "2.3.1",
+    "yeoman-generator": "1.1.1"
+  },
+  "files": [
+    "generators"
+  ],
+  "author": {
+    "name": "Chris Wiegman",
+    "email": "cwiegman@ufl.edu",
+    "url": "https://ufhealth.org/"
+  },
+  "repository": "https://gitlab.ahc.ufl.edu/WebServices/generator-wp",
+  "license": "MIT"
 }
