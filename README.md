@@ -56,6 +56,7 @@ For information on developing and using a generated plugin see the README.md fil
 
 #### 1.1.1
 * Cleanup package versions in package.json
+* Ignore vendor folder in .pot generation
 
 #### 1.1
 * Added Full GIT repository address to generated plugin.
