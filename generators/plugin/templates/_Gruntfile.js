@@ -97,7 +97,8 @@ module.exports = function (grunt) {
 						type:        'wp-plugin',
 						domainPath:  '/languages',
 						mainFile:    '<%= textDomain %>.php',
-						potFilename: '<%= textDomain %>.pot'
+						potFilename: '<%= textDomain %>.pot',
+						exclude: ['vendor']
 					}
 				}
 			},
