@@ -12,7 +12,7 @@ module.exports = class extends Generator {
 			{
 				type:    'input',
 				name:    'pluginName',
-				message: 'The Plugin Name',
+				message: 'The Plugin Name. Do not include UF Health or other unit name in the beginning.',
 				//Defaults to the project's folder name if the input is skipped
 				default: this.appname
 			},
@@ -36,7 +36,7 @@ module.exports = class extends Generator {
 			{
 				type:    'input',
 				name:    'unitName',
-				message: 'Your unit name (use abbreviation, ie. ESE, if anything but UF Health)',
+				message: 'Your unit name (use abbreviation, ie. ESE, if anything but UF Health). This will be prepended to the plugin name.',
 				default: 'UF Health'
 			},
 			{
