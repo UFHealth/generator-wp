@@ -54,6 +54,9 @@ For information on developing and using a generated plugin see the README.md fil
 
 ## Changelog
 
+#### 1.2.1
+* Updated prompt descriptions for better clarity.
+
 #### 1.2
 * Add Grunt clean to plugin grunt processes
 * Add dev and prod versions of compiled JS with appropriate mappings
