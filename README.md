@@ -54,6 +54,10 @@ For information on developing and using a generated plugin see the README.md fil
 
 ## Changelog
 
+#### 1.2.2
+* Updated generated package.json for more current packages
+* Update yeoman and related JS dependencies
+
 #### 1.2.1
 * Updated prompt descriptions for better clarity.
 
