@@ -5,7 +5,7 @@
  * Description: <%= description %>
  * Version: 1.0
  * Text Domain: <%= textDomain %>
- * Domain Path: /lang
+ * Domain Path: /languages
  * Author: <%= authorName %>
  * Author URI: <%= authorUrl %>
  * License: GPLv2

@@ -54,6 +54,9 @@ For information on developing and using a generated plugin see the README.md fil
 
 ## Changelog
 
+#### 1.2.4
+* Fixed languages information in plugin index file
+
 #### 1.2.3
 * Update default URLs and author to be more inline with UF Health Webservices
 
