@@ -31,7 +31,7 @@ module.exports = class extends Generator {
 				type:    'input',
 				name:    'projectHome',
 				message: 'Project homepage',
-				default: 'https://ufhealth.org/'
+				default: 'http://webservices.ufhealth.org/'
 			},
 			{
 				type:    'input',
@@ -43,19 +43,19 @@ module.exports = class extends Generator {
 				type:    'input',
 				name:    'authorName',
 				message: 'Author name',
-				default: this.user.git.name
+				default: 'UF Health'
 			},
 			{
 				type:    'input',
 				name:    'authorEmail',
 				message: 'Author email',
-				default: this.user.git.email
+				default: 'webservices@ahc.ufl.edu'
 			},
 			{
 				type:    'input',
 				name:    'authorUrl',
 				message: 'Author URL',
-				default: 'https://ufhealth.org/'
+				default: 'http://webservices.ufhealth.org/'
 			}
 		];
 
