@@ -43,13 +43,13 @@ module.exports = class extends Generator {
 				type:    'input',
 				name:    'authorName',
 				message: 'Author name',
-				default: this.user.git.name
+				default: 'UF Health'
 			},
 			{
 				type:    'input',
 				name:    'authorEmail',
 				message: 'Author email',
-				default: this.user.git.email
+				default: 'webservices@ahc.ufl.edu'
 			},
 			{
 				type:    'input',
