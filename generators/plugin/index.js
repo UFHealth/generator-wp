@@ -31,7 +31,7 @@ module.exports = class extends Generator {
 				type:    'input',
 				name:    'projectHome',
 				message: 'Project homepage',
-				default: 'https://ufhealth.org/'
+				default: 'http://webservices.ufhealth.org/'
 			},
 			{
 				type:    'input',
@@ -55,7 +55,7 @@ module.exports = class extends Generator {
 				type:    'input',
 				name:    'authorUrl',
 				message: 'Author URL',
-				default: 'https://ufhealth.org/'
+				default: 'http://webservices.ufhealth.org/'
 			}
 		];
 
