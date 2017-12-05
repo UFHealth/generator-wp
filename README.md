@@ -54,6 +54,9 @@ For information on developing and using a generated plugin see the README.md fil
 
 ## Changelog
 
+#### 1.2.6
+* Defined the path to the includes folder in the main plugin file.
+
 #### 1.2.5
 * Updated PHPUnit to 6.5.* to address updates to wp_mock.
 
