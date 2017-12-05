@@ -15,6 +15,7 @@
 
 define( '<%= pluginConst %>_VERSION', '1.0' );
 define( '<%= pluginConst %>_URL', plugin_dir_url( __FILE__ ) );
+define( '<%= pluginConst %>_INCLUDES', trailingslashit( plugin_dir_path( __FILE__ ) ) . 'includes/' );
 
 add_action( 'plugins_loaded', '<%= pluginSlug %>_loader' );
 
