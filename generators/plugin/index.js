@@ -60,6 +60,7 @@ module.exports = class extends Generator {
 		];
 
 		this.prompt(questions).then((answers) => {
+
 			this.pluginName  = answers.unitName + ' ' + answers.pluginName;
 			this.description = answers.description;
 			this.projectHome = answers.projectHome;
@@ -75,7 +76,8 @@ module.exports = class extends Generator {
 			this.packageName = unitAbbr + '\\' + noCase(answers.pluginName, null, '_');
 
 			done();
-		});
+			
+		})
 
 	}
 
