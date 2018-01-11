@@ -54,6 +54,9 @@ For information on developing and using a generated plugin see the README.md fil
 
 ## Changelog
 
+#### 1.2.7
+* Update default packages in package.json
+
 #### 1.2.6
 * Defined the path to the includes folder in the main plugin file.
 
