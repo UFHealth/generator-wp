@@ -70,10 +70,10 @@ module.exports = class extends Generator {
 
 			let unitAbbr = answers.unitName.replace(/ /g, '');
 
-			this.packageName = unitAbbr + '\\' + noCase(answers.pluginName, null, '_');
 			this.pluginSlug  = noCase(unitAbbr + '-' + answers.pluginName, null, '_');
 			this.textDomain  = noCase(unitAbbr + '-' + answers.pluginName, null, '-');
 			this.pluginConst = noCase(unitAbbr + '_' + answers.pluginName, null, '_').toUpperCase();
+			this.packageName = unitAbbr + '\\' + answers.pluginName.trim().replace(' ', '_');
 
 			done();
 			
