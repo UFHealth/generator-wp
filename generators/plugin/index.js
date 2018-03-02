@@ -4,6 +4,23 @@ const noCase = require('no-case');
 
 module.exports = class extends Generator {
 
+	installingDependencies() {
+
+		this.npmInstall(['grunt'], { 'save-dev': true });
+		this.npmInstall(['grunt-autoprefixer'], { 'save-dev': true });
+		this.npmInstall(['grunt-contrib-clean'], { 'save-dev': true });
+		this.npmInstall(['grunt-contrib-cssmin'], { 'save-dev': true });
+		this.npmInstall(['grunt-contrib-jshint'], { 'save-dev': true });
+		this.npmInstall(['grunt-contrib-uglify'], { 'save-dev': true });
+		this.npmInstall(['grunt-contrib-watch'], { 'save-dev': true });
+		this.npmInstall(['grunt-phpunit'], { 'save-dev': true });
+		this.npmInstall(['grunt-sass'], { 'save-dev': true });
+		this.npmInstall(['grunt-wp-i18n'], { 'save-dev': true });
+		this.npmInstall(['load-grunt-tasks'], { 'save-dev': true });
+		this.npmInstall(['time-grunt'], { 'save-dev': true });
+
+	}
+
 	prompting() {
 
 		const done = this.async();
