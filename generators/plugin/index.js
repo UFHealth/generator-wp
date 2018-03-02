@@ -67,6 +67,7 @@ module.exports = class extends Generator {
 			this.authorName = answers.authorName;
 			this.authorEmail = answers.authorEmail;
 			this.authorUrl = answers.authorUrl;
+			this.repoLocation = answers.repoLocation;
 
 			let unitAbbr = answers.unitName.replace(/ /g, '');
 
@@ -118,7 +119,7 @@ module.exports = class extends Generator {
 			this.destinationPath('package.json'), {
 				textDomain:   this.textDomain,
 				authorName:   this.authorName,
-				repoLocation: this.authorName
+				repoLocation: this.repoLocation
 			}
 		);
 
