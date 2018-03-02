@@ -6,18 +6,18 @@ module.exports = class extends Generator {
 
 	installingDependencies() {
 
-		this.npmInstall(['grunt'], { 'save-dev': true });
-		this.npmInstall(['grunt-autoprefixer'], { 'save-dev': true });
-		this.npmInstall(['grunt-contrib-clean'], { 'save-dev': true });
-		this.npmInstall(['grunt-contrib-cssmin'], { 'save-dev': true });
-		this.npmInstall(['grunt-contrib-jshint'], { 'save-dev': true });
-		this.npmInstall(['grunt-contrib-uglify'], { 'save-dev': true });
-		this.npmInstall(['grunt-contrib-watch'], { 'save-dev': true });
-		this.npmInstall(['grunt-phpunit'], { 'save-dev': true });
-		this.npmInstall(['grunt-sass'], { 'save-dev': true });
-		this.npmInstall(['grunt-wp-i18n'], { 'save-dev': true });
-		this.npmInstall(['load-grunt-tasks'], { 'save-dev': true });
-		this.npmInstall(['time-grunt'], { 'save-dev': true });
+		this.npmInstall(['grunt'], {'save-dev': true});
+		this.npmInstall(['grunt-autoprefixer'], {'save-dev': true});
+		this.npmInstall(['grunt-contrib-clean'], {'save-dev': true});
+		this.npmInstall(['grunt-contrib-cssmin'], {'save-dev': true});
+		this.npmInstall(['grunt-contrib-jshint'], {'save-dev': true});
+		this.npmInstall(['grunt-contrib-uglify'], {'save-dev': true});
+		this.npmInstall(['grunt-contrib-watch'], {'save-dev': true});
+		this.npmInstall(['grunt-phpunit'], {'save-dev': true});
+		this.npmInstall(['grunt-sass'], {'save-dev': true});
+		this.npmInstall(['grunt-wp-i18n'], {'save-dev': true});
+		this.npmInstall(['load-grunt-tasks'], {'save-dev': true});
+		this.npmInstall(['time-grunt'], {'save-dev': true});
 
 	}
 
@@ -222,6 +222,16 @@ module.exports = class extends Generator {
 				authorName:  this.authorName
 			}
 		);
+
+	}
+
+	install() {
+
+		this.spawnCommand('composer', ['require', 'phpunit/phpunit', '--dev']);
+		this.spawnCommand('composer', ['require', '10up/wp_mock', '--dev']);
+		this.spawnCommand('composer', ['require', 'wp-cli/wp-cli', '--dev']);
+		this.spawnCommand('composer', ['require', 'stevegrunwell/wp-enforcer', '--dev']);
+		this.spawnCommand('grunt', []);
 
 	}
 };
