@@ -1,6 +1,6 @@
 'use strict';
 const Generator = require('yeoman-generator');
-const noCase    = require('no-case');
+const noCase = require('no-case');
 
 module.exports = class extends Generator {
 
@@ -61,36 +61,27 @@ module.exports = class extends Generator {
 
 		this.prompt(questions).then((answers) => {
 
-			this.pluginName  = answers.unitName + ' ' + answers.pluginName;
+			this.pluginName = answers.unitName + ' ' + answers.pluginName;
 			this.description = answers.description;
 			this.projectHome = answers.projectHome;
-			this.authorName  = answers.authorName;
+			this.authorName = answers.authorName;
 			this.authorEmail = answers.authorEmail;
-			this.authorUrl   = answers.authorUrl;
+			this.authorUrl = answers.authorUrl;
 
 			let unitAbbr = answers.unitName.replace(/ /g, '');
 
-			this.pluginSlug  = noCase(unitAbbr + '-' + answers.pluginName, null, '_');
-			this.textDomain  = noCase(unitAbbr + '-' + answers.pluginName, null, '-');
+			this.pluginSlug = noCase(unitAbbr + '-' + answers.pluginName, null, '_');
+			this.textDomain = noCase(unitAbbr + '-' + answers.pluginName, null, '-');
 			this.pluginConst = noCase(unitAbbr + '_' + answers.pluginName, null, '_').toUpperCase();
 			this.packageName = unitAbbr + '\\' + answers.pluginName.trim().replace(' ', '_');
 
 			done();
-			
+
 		})
 
 	}
 
 	writing() {
-
-		this.fs.copyTpl(
-			this.templatePath('_package.json'),
-			this.destinationPath('package.json'), {
-				textDomain:   this.textDomain,
-				authorName:   this.authorName,
-				repoLocation: this.authorName
-			}
-		);
 
 		this.fs.copy(
 			this.templatePath('_.gitignore'),
@@ -120,6 +111,15 @@ module.exports = class extends Generator {
 		this.fs.copy(
 			this.templatePath('_.gitkeep'),
 			this.destinationPath('includes/.gitkeep')
+		);
+
+		this.fs.copyTpl(
+			this.templatePath('_package.json'),
+			this.destinationPath('package.json'), {
+				textDomain:   this.textDomain,
+				authorName:   this.authorName,
+				repoLocation: this.authorName
+			}
 		);
 
 		this.fs.copyTpl(
