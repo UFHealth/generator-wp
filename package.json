@@ -1,6 +1,5 @@
 {
 	"name": "generator-wp",
-	"version": "1.2.2",
 	"description": "WordPress scaffolding generator for use within UF Health properties.",
 	"keywords": [
 		"yeoman-generator",
