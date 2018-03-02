@@ -118,8 +118,8 @@ module.exports = class extends Generator {
 		);
 
 		this.fs.copy(
-			this.templatePath('_.githold'),
-			this.destinationPath('includes/.githold')
+			this.templatePath('_.gitkeep'),
+			this.destinationPath('includes/.gitkeep')
 		);
 
 		this.fs.copyTpl(
