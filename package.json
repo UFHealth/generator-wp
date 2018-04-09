@@ -3,11 +3,10 @@
 	"description": "WordPress scaffolding generator for use within UF Health properties.",
 	"keywords": [
 		"yeoman-generator",
-		"docker",
 		"wordpress"
 	],
 	"dependencies": {
-		"chalk": "2.3.0",
+		"chalk": "2.3.2",
 		"extendable-yeoman": "0.3.1",
 		"no-case": "2.3.2",
 		"yeoman-generator": "2.0.3"
