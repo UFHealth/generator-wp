@@ -14,7 +14,7 @@ stages:
 
 build_assets:
   stage: build
-  image: php:7.1
+  image: php:7.2
   script:
     - php composer.phar install
   artifacts:
@@ -25,9 +25,9 @@ build_assets:
       paths:
         - vendor/
 
-# Test PHP 7.1
-test:7.1:
+# Test PHP 7.2
+test:7.2:
   stage: test
-  image: php:7.1
+  image: php:7.2
   script:
   - vendor/bin/phpunit --configuration phpunit.xml
