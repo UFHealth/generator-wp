@@ -210,13 +210,6 @@ module.exports = class extends Generator {
         );
 
         this.fs.copyTpl(
-            this.templatePath('_TestCase.php'),
-            this.destinationPath('tests/phpunit/test-tools/TestCase.php'), {
-                packageName: this.packageName
-            }
-        );
-
-        this.fs.copyTpl(
             this.templatePath('_plugin.scss'),
             this.destinationPath('assets/css/scss/' + this.textDomain + '.scss'), {
                 pluginName: this.pluginName,
