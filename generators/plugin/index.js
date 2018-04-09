@@ -122,12 +122,12 @@ module.exports = class extends Generator {
         );
 
         this.fs.copy(
-            this.templatePath('_phpcs.xml'),
-            this.destinationPath('phpcs.xml')
+            this.templatePath('_phpcs.ruleset.xml'),
+            this.destinationPath('phpcs.ruleset.xml')
         );
 
         this.fs.copy(
-            this.templatePath('_.phpcs.ruleset.xml'),
+            this.templatePath('_phpcs.ruleset.xml'),
             this.destinationPath('phpcs.ruleset.xml')
         );
 
@@ -232,7 +232,7 @@ module.exports = class extends Generator {
 
     install() {
 
-        this.spawnCommand('composer', ['require', 'phpunit/phpunit', '--dev']);
+        this.spawnCommand('composer', ['require', 'phpunit/phpunit:6.5.*', '--dev']);
         this.spawnCommand('composer', ['require', '10up/wp_mock', '--dev']);
         this.spawnCommand('composer', ['require', 'wp-cli/wp-cli', '--dev']);
         this.spawnCommand('composer', ['require', 'stevegrunwell/wp-enforcer', '--dev']);
