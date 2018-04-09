@@ -54,6 +54,9 @@ For information on developing and using a generated plugin see the README.md fil
 
 ## Changelog
 
+#### 1.3.1
+* Don't use grunt/phpunt
+
 #### 1.3
 * Remove WP_Mock and use standard WordPress coding standards
 * Ensure NPM packages are always up to date
