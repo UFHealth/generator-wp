@@ -140,22 +140,6 @@ module.exports = function (grunt) {
 				}
 			},
 
-			phpunit: {
-
-				classes: {
-					dir: 'tests/'
-				},
-
-				options: {
-
-					bin:        './vendor/bin/phpunit',
-					testSuffix: 'Tests.php',
-					bootstrap:  'bootstrap.php',
-					colors:     true
-
-				}
-			},
-
 			/**
 			 * Clean up the JavaScript
 			 */
@@ -199,7 +183,7 @@ module.exports = function (grunt) {
 	);
 
 	// A very basic default task.
-	grunt.registerTask('default', ['phpunit', 'jshint', 'uglify:production', 'uglify:dev', 'sass', 'autoprefixer', 'cssmin', 'makepot']);
+	grunt.registerTask('default', ['jshint', 'uglify:production', 'uglify:dev', 'sass', 'autoprefixer', 'cssmin', 'makepot']);
 	grunt.registerTask('dev', ['default', 'watch']);
 
 };
