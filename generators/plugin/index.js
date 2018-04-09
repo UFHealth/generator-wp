@@ -13,7 +13,6 @@ module.exports = class extends Generator {
         this.npmInstall(['grunt-contrib-jshint'], {'save-dev': true});
         this.npmInstall(['grunt-contrib-uglify'], {'save-dev': true});
         this.npmInstall(['grunt-contrib-watch'], {'save-dev': true});
-        this.npmInstall(['grunt-phpunit'], {'save-dev': true});
         this.npmInstall(['grunt-sass'], {'save-dev': true});
         this.npmInstall(['grunt-wp-i18n'], {'save-dev': true});
         this.npmInstall(['load-grunt-tasks'], {'save-dev': true});
