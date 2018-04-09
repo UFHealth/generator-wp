@@ -136,6 +136,11 @@ module.exports = class extends Generator {
             this.destinationPath('includes/.gitkeep')
         );
 
+        this.fs.copy(
+            this.templatePath('_install-wp-tests.sh'),
+            this.destinationPath('tests/bin/install-wp-tests.sh')
+        );
+
         this.fs.copyTpl(
             this.templatePath('_package.json'),
             this.destinationPath('package.json'), {
@@ -147,8 +152,9 @@ module.exports = class extends Generator {
 
         this.fs.copyTpl(
             this.templatePath('_bootstrap.php'),
-            this.destinationPath('bootstrap.php'), {
-                pluginConst: this.pluginConst
+            this.destinationPath('tests/bootstrap.php'), {
+                pluginConst: this.pluginConst,
+                textDomain: this.textDomain,
             }
         );
 
@@ -233,7 +239,6 @@ module.exports = class extends Generator {
     install() {
 
         this.spawnCommand('composer', ['require', 'phpunit/phpunit:6.5.*', '--dev']);
-        this.spawnCommand('composer', ['require', '10up/wp_mock', '--dev']);
         this.spawnCommand('composer', ['require', 'wp-cli/wp-cli', '--dev']);
         this.spawnCommand('composer', ['require', 'stevegrunwell/wp-enforcer', '--dev']);
         this.spawnCommand('grunt', []);
