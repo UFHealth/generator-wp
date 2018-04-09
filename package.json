@@ -1,16 +1,15 @@
 {
 	"name": "generator-wp",
-	"version": "1.2.2",
 	"description": "WordPress scaffolding generator for use within UF Health properties.",
 	"keywords": [
 		"yeoman-generator",
 		"wordpress"
 	],
 	"dependencies": {
-		"chalk": "2.2.0",
+		"chalk": "2.3.2",
 		"extendable-yeoman": "0.3.1",
 		"no-case": "2.3.2",
-		"yeoman-generator": "2.0.1"
+		"yeoman-generator": "2.0.3"
 	},
 	"files": [
 		"generators"

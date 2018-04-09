@@ -54,6 +54,12 @@ For information on developing and using a generated plugin see the README.md fil
 
 ## Changelog
 
+#### 1.3
+* Remove WP_Mock and use standard WordPress coding standards
+* Ensure NPM packages are always up to date
+* install composer an npm modules on use
+* run grunt on initial setup
+
 #### 1.2.7
 * Update default packages in package.json
 
