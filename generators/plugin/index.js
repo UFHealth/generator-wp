@@ -121,13 +121,8 @@ module.exports = class extends Generator {
         );
 
         this.fs.copy(
-            this.templatePath('_phpcs.novip.xml'),
-            this.destinationPath('phpcs.ruleset.xml')
-        );
-
-        this.fs.copy(
-            this.templatePath('_phpcs.novip.xml'),
-            this.destinationPath('phpcs.ruleset.xml')
+            this.templatePath('_phpcs.xml'),
+            this.destinationPath('phpcs.xml')
         );
 
         this.fs.copy(
