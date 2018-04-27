@@ -54,6 +54,11 @@ For information on developing and using a generated plugin see the README.md fil
 
 ## Changelog
 
+#### 1.3.2
+* Fix wp-enforcer
+* Drop WordPress VIP standards
+* Minor name fixes
+
 #### 1.3.1
 * Don't use grunt/phpunt
 
