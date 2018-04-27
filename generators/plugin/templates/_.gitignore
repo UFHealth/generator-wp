@@ -48,6 +48,7 @@ GitHub.sublime-settings
 
 .metadata
 bin/
+!tests/bin/
 tmp/
 *.tmp
 *.bak
