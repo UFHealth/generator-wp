@@ -54,6 +54,9 @@ For information on developing and using a generated plugin see the README.md fil
 
 ## Changelog
 
+##### 1.3.4
+* Add code coverage information
+
 ##### 1.3.3
 * Cleanup of existing templates
 * Auto-initialize GIT repository
