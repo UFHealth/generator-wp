@@ -110,7 +110,8 @@ module.exports = class extends Generator {
         answers.unitName = ''
       }
 
-      this.pluginName = answers.unitName + ' ' + answers.pluginName
+      this.unitName = answers.unitName
+      this.pluginName = answers.pluginName
       this.description = answers.description
       this.projectHome = answers.projectHome
       this.authorName = answers.authorName
@@ -123,10 +124,21 @@ module.exports = class extends Generator {
 
       let unitAbbr = answers.unitName.replace(/ /g, '')
 
-      this.pluginSlug = noCase(unitAbbr + '-' + answers.pluginName, null, '_')
-      this.textDomain = noCase(unitAbbr + '-' + answers.pluginName, null, '-')
-      this.pluginConst = noCase(unitAbbr + '_' + answers.pluginName, null, '_').toUpperCase()
-      this.packageName = unitAbbr + '\\' + answers.pluginName.trim().replace(' ', '_')
+      this.pluginSlug = noCase(unitAbbr + '-' + this.pluginName, null, '_')
+      this.textDomain = noCase(unitAbbr + '-' + this.pluginName, null, '-')
+      this.pluginConst = noCase(unitAbbr + '_' + this.pluginName, null, '_').toUpperCase()
+      this.packageName = '\\' + this.pluginName.trim().replace(' ', '_')
+
+      if ('' === unitAbbr) {
+        this.packageName = '\\' + unitAbbr + this.packageName
+      }
+
+      this.log(this.pluginName)
+      this.log(this.unitName)
+      this.log(this.pluginSlug)
+      this.log(this.textDomain)
+      this.log(this.pluginConst)
+      this.log(this.packageName)
 
       done()
 
