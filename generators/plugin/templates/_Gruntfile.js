@@ -9,6 +9,63 @@ module.exports = function (grunt) {
 	grunt.initConfig(
 		{
 
+    <% if (true === needsCSS) { %>
+
+      /**
+       * Auto-prefix CSS Elements after SASS is processed.
+       */
+      autoprefixer: {
+
+        options: {
+          browsers: ['last 5 versions'],
+            map:      true
+        },
+
+        files: {
+          expand:  true,
+            flatten: true,
+            src:     ['assets/css/<%= textDomain %>.css'],
+            dest:    'assets/css'
+        }
+      },
+
+      /**
+       * Minify CSS after prefixes are added
+       */
+      cssmin: {
+
+        target: {
+
+          files: [{
+            expand: true,
+            cwd:    'assets/css',
+            src:    ['<%= textDomain %>.css'],
+            dest:   'assets/css',
+            ext:    '.min.css'
+          }]
+
+        }
+      },
+
+      /**
+       * Process SASS
+       */
+      sass: {
+
+        dist: {
+
+          options: {
+            style:     'expanded',
+              sourceMap: true,
+              noCache:   true
+          },
+
+          files: {
+            'assets/css/<%= textDomain %>.css': 'assets/css/scss/<%= textDomain %>.scss'
+          }
+        }
+      },
+
 			/**
 			 * Clean existing files
 			 */
@@ -26,6 +83,10 @@ module.exports = function (grunt) {
 					]
 				}
 			},
+
+    <% } %>
+
+    <% if (true === needsJS) { %>
 
 			/**
 			 * Processes and compresses JavaScript.
@@ -69,60 +130,58 @@ module.exports = function (grunt) {
 				}
 			},
 
-			/**
-			 * Auto-prefix CSS Elements after SASS is processed.
-			 */
-			autoprefixer: {
+      /**
+       * Clean up the JavaScript
+       */
+      jshint: {
+        options: {
+          jshintrc: true
+        },
+        all:     ['assets/js/src/<%= textDomain %>.js']
+      },
 
-				options: {
-					browsers: ['last 5 versions'],
-					map:      true
-				},
+    <% } %>
 
-				files: {
-					expand:  true,
-					flatten: true,
-					src:     ['assets/css/<%= textDomain %>.css'],
-					dest:    'assets/css'
-				}
-			},
+    <% if (true === needsCSS || true === needsJS) { %>
 
-			/**
-			 * Minify CSS after prefixes are added
-			 */
-			cssmin: {
+      /**
+       * Watch scripts and styles for changes
+       */
+      watch: {
 
-				target: {
+        options: {
+          livereload: true
+        },
 
-					files: [{
-						expand: true,
-						cwd:    'assets/css',
-						src:    ['<%= textDomain %>.css'],
-						dest:   'assets/css',
-						ext:    '.min.css'
-					}]
+      <% if (true === needsJS) { %>
 
-				}
-			},
+        scripts: {
 
-			/**
-			 * Process SASS
-			 */
-			sass: {
+          files: [
+            'assets/js/src/*'
+          ],
 
-				dist: {
+            tasks: ['uglify:production']
 
-					options: {
-						style:     'expanded',
-						sourceMap: true,
-						noCache:   true
-					},
+        }<% if (true === needsCSS) { %>,<% } %>
 
-					files: {
-						'assets/css/<%= textDomain %>.css': 'assets/css/scss/<%= textDomain %>.scss'
-					}
-				}
-			},
+      <% } %>
+
+      <% if (true === needsCSS) { %>
+
+        styles: {
+
+          files: [
+            'assets/css/scss/*'
+          ],
+
+            tasks: ['sass', 'autoprefixer', 'cssmin']
+
+        }
+
+      <% } %>
+      },
+    <% } %>
 
 			/**
 			 * Update translation file.
@@ -138,52 +197,14 @@ module.exports = function (grunt) {
 						exclude: ['vendor']
 					}
 				}
-			},
-
-			/**
-			 * Clean up the JavaScript
-			 */
-			jshint: {
-				options: {
-					jshintrc: true
-				},
-				all:     ['assets/js/src/<%= textDomain %>.js']
-			},
-
-			/**
-			 * Watch scripts and styles for changes
-			 */
-			watch: {
-
-				options: {
-					livereload: true
-				},
-
-				scripts: {
-
-					files: [
-						'assets/js/src/*'
-					],
-
-					tasks: ['uglify:production']
-
-				},
-
-				styles: {
-
-					files: [
-						'assets/css/scss/*'
-					],
-
-					tasks: ['sass', 'autoprefixer', 'cssmin']
-
-				}
 			}
 		}
 	);
 
 	// A very basic default task.
-	grunt.registerTask('default', ['jshint', 'uglify:production', 'uglify:dev', 'sass', 'autoprefixer', 'cssmin', 'makepot']);
-	grunt.registerTask('dev', ['default', 'watch']);
+  grunt.registerTask('default', [<% if (true === needsJS) { %>'jshint', 'uglify:production', 'uglify:dev', <% } %><% if (true === needsCSS) { %>'sass', 'autoprefixer', 'cssmin', <% } %>'makepot']);
+  <% if (true === needsCSS || true === needsJS) { %>
+  grunt.registerTask('dev', ['default', 'watch']);
+  <% } %>
 
 };

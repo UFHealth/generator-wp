@@ -7,13 +7,23 @@ module.exports = class extends Generator {
   installingDependencies () {
 
     this.npmInstall(['grunt'], {'save-dev': true})
-    this.npmInstall(['grunt-autoprefixer'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-clean'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-cssmin'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-jshint'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-uglify'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-watch'], {'save-dev': true})
-    this.npmInstall(['grunt-sass'], {'save-dev': true})
+
+    if (true === this.needsJS) {
+      this.npmInstall(['grunt-contrib-jshint'], {'save-dev': true})
+      this.npmInstall(['grunt-contrib-uglify'], {'save-dev': true})
+    }
+
+    if (true === this.needsCSS) {
+      this.npmInstall(['grunt-autoprefixer'], {'save-dev': true})
+      this.npmInstall(['grunt-contrib-cssmin'], {'save-dev': true})
+    }
+
+    if (true === this.needsJS || true === this.needsCSS) {
+      this.npmInstall(['grunt-contrib-clean'], {'save-dev': true})
+      this.npmInstall(['grunt-contrib-watch'], {'save-dev': true})
+      this.npmInstall(['grunt-sass'], {'save-dev': true})
+    }
+
     this.npmInstall(['grunt-wp-i18n'], {'save-dev': true})
     this.npmInstall(['load-grunt-tasks'], {'save-dev': true})
     this.npmInstall(['time-grunt'], {'save-dev': true})
@@ -26,16 +36,30 @@ module.exports = class extends Generator {
 
     const questions = [
       {
+        type: 'confirm',
+        name: 'forUFHealth',
+        message: 'Is this plugin for use on the UF Health multisite or Bridge network?',
+      },
+      {
+        when: function (response) {
+          return response.forUFHealth
+        },
+        type: 'input',
+        name: 'unitName',
+        message: 'Your unit name (use abbreviation, ie. ESE, if anything but UF Health). This will be prepended to the plugin name.',
+        default: 'UF Health'
+      },
+      {
         type: 'input',
         name: 'pluginName',
-        message: 'The Plugin Name. Do not include UF Health or other unit name in the beginning.',
+        message: 'The Plugin Name.',
         //Defaults to the project's folder name if the input is skipped
         default: this.appname
       },
       {
         type: 'input',
         name: 'description',
-        message: 'Description',
+        message: 'Plugin Description',
         default: 'My awesome WordPress plugin'
       },
       {
@@ -51,46 +75,73 @@ module.exports = class extends Generator {
       },
       {
         type: 'input',
-        name: 'unitName',
-        message: 'Your unit name (use abbreviation, ie. ESE, if anything but UF Health). This will be prepended to the plugin name.',
-        default: 'UF Health'
-      },
-      {
-        type: 'input',
         name: 'authorName',
         message: 'Author name',
-        default: 'UF Health'
+        default: 'UF Health',
+        store: true
       },
       {
         type: 'input',
         name: 'authorEmail',
         message: 'Author email',
-        default: 'webservices@ahc.ufl.edu'
+        default: 'webservices@ahc.ufl.edu',
+        store: true
       },
       {
         type: 'input',
         name: 'authorUrl',
         message: 'Author URL',
-        default: 'http://webservices.ufhealth.org/'
+        default: 'http://webservices.ufhealth.org/',
+        store: true
+      },
+      {
+        type: 'confirm',
+        name: 'needsDocker',
+        message: 'Does this plugin need a Docker environment for development?',
+      },
+      {
+        type: 'confirm',
+        name: 'needsJS',
+        message: 'Does this plugin need processing for JavaScript?',
+      },
+      {
+        type: 'confirm',
+        name: 'needsCSS',
+        message: 'Does this plugin need processing for CSS/SCSS?',
       }
     ]
 
-    this.prompt(questions).then((answers) => {
+    this.prompt(questions, function (response) {}).then((answers) => {
 
-      this.pluginName = answers.unitName + ' ' + answers.pluginName
+      this.forUFHealth = answers.forUFHealth
+
+      // Set a unit name if we don't otherwise have it available.
+      if (false === this.forUFHealth) {
+        answers.unitName = ''
+      }
+
+      this.unitName = answers.unitName
+      this.pluginName = answers.pluginName
       this.description = answers.description
       this.projectHome = answers.projectHome
       this.authorName = answers.authorName
       this.authorEmail = answers.authorEmail
       this.authorUrl = answers.authorUrl
       this.repoLocation = answers.repoLocation
+      this.needsDocker = answers.needsDocker
+      this.needsJS = answers.needsJS
+      this.needsCSS = answers.needsCSS
 
       let unitAbbr = answers.unitName.replace(/ /g, '')
 
-      this.pluginSlug = noCase(unitAbbr + '-' + answers.pluginName, null, '_')
-      this.textDomain = noCase(unitAbbr + '-' + answers.pluginName, null, '-')
-      this.pluginConst = noCase(unitAbbr + '_' + answers.pluginName, null, '_').toUpperCase()
-      this.packageName = unitAbbr + '\\' + answers.pluginName.trim().replace(' ', '_')
+      this.pluginSlug = noCase(unitAbbr + '-' + this.pluginName, null, '_')
+      this.textDomain = noCase(unitAbbr + '-' + this.pluginName, null, '-')
+      this.pluginConst = noCase(unitAbbr + '_' + this.pluginName, null, '_').toUpperCase()
+      this.packageName = '\\' + this.pluginName.trim().replace(' ', '_')
+
+      if ('' === unitAbbr) {
+        this.packageName = '\\' + unitAbbr + this.packageName
+      }
 
       done()
 
@@ -105,10 +156,13 @@ module.exports = class extends Generator {
       this.destinationPath('.gitignore')
     )
 
-    this.fs.copy(
-      this.templatePath('_.jshintrc'),
-      this.destinationPath('.jshintrc')
-    )
+    if (true === this.needsJS) {
+
+      this.fs.copy(
+        this.templatePath('_.jshintrc'),
+        this.destinationPath('.jshintrc')
+      )
+    }
 
     this.fs.copy(
       this.templatePath('_.gitlab-ci.yml'),
@@ -135,6 +189,38 @@ module.exports = class extends Generator {
       this.destinationPath('tests/bin/install-wp-tests.sh')
     )
 
+    if (true === this.needsDocker) {
+
+      this.fs.copy(
+        this.templatePath('_wp'),
+        this.destinationPath('Docker/bin/wp')
+      )
+
+      this.fs.copy(
+        this.templatePath('_develop'),
+        this.destinationPath('develop')
+      )
+
+      this.fs.copy(
+        this.templatePath('_shell'),
+        this.destinationPath('Docker/bin/shell')
+      )
+
+      this.fs.copyTpl(
+        this.templatePath('_setup'),
+        this.destinationPath('Docker/bin/setup'), {
+          textDomain: this.textDomain
+        }
+      )
+
+      this.fs.copyTpl(
+        this.templatePath('_docker-compose.yml'),
+        this.destinationPath('docker-compose.yml'), {
+          textDomain: this.textDomain
+        }
+      )
+    }
+
     this.fs.copyTpl(
       this.templatePath('_package.json'),
       this.destinationPath('package.json'), {
@@ -155,6 +241,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('_index.php'),
       this.destinationPath(this.textDomain + '.php'), {
+        unitName: this.unitName,
         pluginName: this.pluginName,
         description: this.description,
         projectHome: this.projectHome,
@@ -181,21 +268,27 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('_Gruntfile.js'),
       this.destinationPath('Gruntfile.js'), {
-        textDomain: this.textDomain
+        textDomain: this.textDomain,
+        needsCSS: this.needsCSS,
+        needsJS: this.needsJS
       }
     )
 
     this.fs.copyTpl(
       this.templatePath('_README.md'),
       this.destinationPath('README.md'), {
+        unitName: this.unitName,
         pluginName: this.pluginName,
-        description: this.description
+        description: this.description,
+        needsDocker: this.needsDocker,
+        textDomain: this.textDomain,
       }
     )
 
     this.fs.copyTpl(
       this.templatePath('_uninstall.php'),
       this.destinationPath('uninstall.php'), {
+        unitName: this.unitName,
         pluginName: this.pluginName,
         packageName: this.packageName,
         authorName: this.authorName,
@@ -203,28 +296,33 @@ module.exports = class extends Generator {
       }
     )
 
-    this.fs.copyTpl(
-      this.templatePath('_plugin.scss'),
-      this.destinationPath('assets/css/scss/' + this.textDomain + '.scss'), {
-        pluginName: this.pluginName,
-        projectHome: this.projectHome,
-        authorName: this.authorName
-      }
-    )
+    if (true === this.needsCSS) {
+      this.fs.copyTpl(
+        this.templatePath('_plugin.scss'),
+        this.destinationPath('assets/css/scss/' + this.textDomain + '.scss'), {
+          unitName: this.unitName,
+          pluginName: this.pluginName,
+          projectHome: this.projectHome,
+          authorName: this.authorName
+        }
+      )
+    }
 
-    this.fs.copyTpl(
-      this.templatePath('_plugin.js'),
-      this.destinationPath('assets/js/src/' + this.textDomain + '.js'), {
-        pluginName: this.pluginName,
-        projectHome: this.projectHome,
-        authorName: this.authorName
-      }
-    )
+    if (true === this.needsJS) {
+      this.fs.copyTpl(
+        this.templatePath('_plugin.js'),
+        this.destinationPath('assets/js/src/' + this.textDomain + '.js'), {
+          unitName: this.unitName,
+          pluginName: this.pluginName,
+          projectHome: this.projectHome,
+          authorName: this.authorName
+        }
+      )
+    }
 
   }
 
   install () {
-
     this.spawnCommandSync('composer', ['require', 'phpunit/phpunit:6.5.*', '--dev'])
     this.spawnCommandSync('composer', ['require', 'wp-cli/wp-cli', '--dev'])
     this.spawnCommandSync('composer', ['require', 'stevegrunwell/wp-enforcer', '--dev'])
@@ -234,7 +332,9 @@ module.exports = class extends Generator {
   end () {
 
     this.spawnCommandSync('grunt', [])
-    this.spawnCommandSync('git', ['init'])
+    if ( '' !== this.repoLocation ) {
+      this.spawnCommandSync('git', ['init'])
+    }
     this.spawnCommandSync('./vendor/bin/wp-enforcer', [])
 
   }

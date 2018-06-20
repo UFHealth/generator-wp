@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: <%= pluginName %>
+ * Plugin Name: <%if ( '' !== unitName ) { %><%= unitName %> <% } %><%= pluginName %>
  * Plugin URI: <%= projectHome %>
  * Description: <%= description %>
  * Version: 1.0

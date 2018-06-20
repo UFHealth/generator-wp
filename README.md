@@ -33,9 +33,10 @@ For each project type you get:
 
 - Composer to manage server-side dependencies
 - NPM to manage development dependencies (like Grunt)
-- Grunt to streamline development
-- phpunit and [WP_Mock](https://github.com/10up/wp_mock) for PHP unit testing
-- A fully-fleshed out, namespaced setup for WordPress plugin development
+- Grunt to streamline JS and CSS assets
+- phpunit for PHP unit testing
+- A fully-fleshed out, name-spaced setup for WordPress plugin development
+- A Docker configuration, compatible with [Ouroboros](https://github.com/UFHealth/ouroboros), to get you actually working on code quickly.
 
 ### Plugin
 
@@ -53,6 +54,15 @@ For information on developing and using a generated plugin see the README.md fil
 **More project types coming soon**
 
 ## Changelog
+
+##### 1.4
+* Allow plugin setup without CSS or JS support
+* Add Ouroboros-compatible Docker configuration to setup
+* Allow UF Health prefix to be optional on setup
+* Better handle plugin name, slug and other variables throughout the templates
+
+##### 1.3.4
+* Add code coverage information
 
 ##### 1.3.3
 * Cleanup of existing templates

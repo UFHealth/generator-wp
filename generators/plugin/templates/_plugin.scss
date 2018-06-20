@@ -1,5 +1,5 @@
 /**
- * <%= pluginName %>
+ * <%if ( '' !== unitName ) { %><%= unitName %> <% } %><%= pluginName %>
  * <%= projectHome %>
  *
  * Copyright (c) <%= new Date().getFullYear() %> <%= authorName %>

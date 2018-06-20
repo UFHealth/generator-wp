@@ -1,6 +1,6 @@
 <?php
 /**
- * <%= pluginName %> uninstaller
+ * <%if ( '' !== unitName ) { %><%= unitName %> <% } %><%= pluginName %> uninstaller
  *
  * Used when clicking "Delete" from inside of WordPress's plugins page.
  *
@@ -42,7 +42,7 @@ function perform_uninstall() {
 		exit_uninstaller();
 	}
 
-	// Uninstall <%= pluginName %>.
+	// Uninstall <%if ( '' !== unitName ) { %><%= unitName %> <% } %><%= pluginName %>.
 	clean_data();
 }
 
