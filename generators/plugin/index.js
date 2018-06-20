@@ -7,13 +7,23 @@ module.exports = class extends Generator {
   installingDependencies () {
 
     this.npmInstall(['grunt'], {'save-dev': true})
-    this.npmInstall(['grunt-autoprefixer'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-clean'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-cssmin'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-jshint'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-uglify'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-watch'], {'save-dev': true})
-    this.npmInstall(['grunt-sass'], {'save-dev': true})
+
+    if (true === this.needsJS) {
+      this.npmInstall(['grunt-contrib-jshint'], {'save-dev': true})
+      this.npmInstall(['grunt-contrib-uglify'], {'save-dev': true})
+    }
+
+    if (true === this.needsCSS) {
+      this.npmInstall(['grunt-autoprefixer'], {'save-dev': true})
+      this.npmInstall(['grunt-contrib-cssmin'], {'save-dev': true})
+    }
+
+    if (true === this.needsJS || true === this.needsCSS) {
+      this.npmInstall(['grunt-contrib-clean'], {'save-dev': true})
+      this.npmInstall(['grunt-contrib-watch'], {'save-dev': true})
+      this.npmInstall(['grunt-sass'], {'save-dev': true})
+    }
+
     this.npmInstall(['grunt-wp-i18n'], {'save-dev': true})
     this.npmInstall(['load-grunt-tasks'], {'save-dev': true})
     this.npmInstall(['time-grunt'], {'save-dev': true})
@@ -184,9 +194,7 @@ module.exports = class extends Generator {
       this.destinationPath('package.json'), {
         textDomain: this.textDomain,
         authorName: this.authorName,
-        repoLocation: this.repoLocation,
-        needsCSS: this.needsCSS,
-        needsJS: this.needsJS
+        repoLocation: this.repoLocation
       }
     )
 
@@ -227,7 +235,9 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('_Gruntfile.js'),
       this.destinationPath('Gruntfile.js'), {
-        textDomain: this.textDomain
+        textDomain: this.textDomain,
+        needsCSS: this.needsCSS,
+        needsJS: this.needsJS
       }
     )
 
