@@ -31,6 +31,15 @@ module.exports = class extends Generator {
         message: 'Is this plugin for use on the UF Health multisite or Bridge network?',
       },
       {
+        when: function (response) {
+          return response.forUFHealth
+        },
+        type: 'input',
+        name: 'unitName',
+        message: 'Your unit name (use abbreviation, ie. ESE, if anything but UF Health). This will be prepended to the plugin name.',
+        default: 'UF Health'
+      },
+      {
         type: 'input',
         name: 'pluginName',
         message: 'The Plugin Name.',
@@ -56,12 +65,6 @@ module.exports = class extends Generator {
       },
       {
         type: 'input',
-        name: 'unitName',
-        message: 'Your unit name (use abbreviation, ie. ESE, if anything but UF Health). This will be prepended to the plugin name.',
-        default: 'UF Health'
-      },
-      {
-        type: 'input',
         name: 'authorName',
         message: 'Author name',
         default: 'UF Health',
@@ -83,7 +86,7 @@ module.exports = class extends Generator {
       }
     ]
 
-    this.prompt(questions).then((answers) => {
+    this.prompt(questions, function (response) {}).then((answers) => {
 
       this.pluginName = answers.unitName + ' ' + answers.pluginName
       this.description = answers.description
