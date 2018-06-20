@@ -6,17 +6,17 @@ module.exports = class extends Generator {
 
   installingDependencies () {
 
-    this.npmInstall(['grunt'], {'save-dev': true})
-    this.npmInstall(['grunt-autoprefixer'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-clean'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-cssmin'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-jshint'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-uglify'], {'save-dev': true})
-    this.npmInstall(['grunt-contrib-watch'], {'save-dev': true})
-    this.npmInstall(['grunt-sass'], {'save-dev': true})
-    this.npmInstall(['grunt-wp-i18n'], {'save-dev': true})
-    this.npmInstall(['load-grunt-tasks'], {'save-dev': true})
-    this.npmInstall(['time-grunt'], {'save-dev': true})
+    //this.npmInstall(['grunt'], {'save-dev': true})
+    //this.npmInstall(['grunt-autoprefixer'], {'save-dev': true})
+    //this.npmInstall(['grunt-contrib-clean'], {'save-dev': true})
+    //this.npmInstall(['grunt-contrib-cssmin'], {'save-dev': true})
+    //this.npmInstall(['grunt-contrib-jshint'], {'save-dev': true})
+    //this.npmInstall(['grunt-contrib-uglify'], {'save-dev': true})
+    //this.npmInstall(['grunt-contrib-watch'], {'save-dev': true})
+    //this.npmInstall(['grunt-sass'], {'save-dev': true})
+    //this.npmInstall(['grunt-wp-i18n'], {'save-dev': true})
+    //this.npmInstall(['load-grunt-tasks'], {'save-dev': true})
+    //this.npmInstall(['time-grunt'], {'save-dev': true})
 
   }
 
@@ -103,6 +103,13 @@ module.exports = class extends Generator {
 
     this.prompt(questions, function (response) {}).then((answers) => {
 
+      this.forUFHealth = answers.forUFHealth
+
+      // Set a unit name if we don't otherwise have it available.
+      if (false === this.forUFHealth) {
+        answers.unitName = ''
+      }
+
       this.pluginName = answers.unitName + ' ' + answers.pluginName
       this.description = answers.description
       this.projectHome = answers.projectHome
@@ -110,6 +117,9 @@ module.exports = class extends Generator {
       this.authorEmail = answers.authorEmail
       this.authorUrl = answers.authorUrl
       this.repoLocation = answers.repoLocation
+      this.needsDocker = answers.needsDocker
+      this.needsJS = answers.needsJS
+      this.needsCSS = answers.needsCSS
 
       let unitAbbr = answers.unitName.replace(/ /g, '')
 
@@ -251,17 +261,17 @@ module.exports = class extends Generator {
 
   install () {
 
-    this.spawnCommandSync('composer', ['require', 'phpunit/phpunit:6.5.*', '--dev'])
-    this.spawnCommandSync('composer', ['require', 'wp-cli/wp-cli', '--dev'])
-    this.spawnCommandSync('composer', ['require', 'stevegrunwell/wp-enforcer', '--dev'])
+    //this.spawnCommandSync('composer', ['require', 'phpunit/phpunit:6.5.*', '--dev'])
+    //this.spawnCommandSync('composer', ['require', 'wp-cli/wp-cli', '--dev'])
+    //this.spawnCommandSync('composer', ['require', 'stevegrunwell/wp-enforcer', '--dev'])
 
   }
 
   end () {
 
-    this.spawnCommandSync('grunt', [])
-    this.spawnCommandSync('git', ['init'])
-    this.spawnCommandSync('./vendor/bin/wp-enforcer', [])
+    //this.spawnCommandSync('grunt', [])
+    //this.spawnCommandSync('git', ['init'])
+    //this.spawnCommandSync('./vendor/bin/wp-enforcer', [])
 
   }
 }
