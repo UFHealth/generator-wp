@@ -279,7 +279,8 @@ module.exports = class extends Generator {
       this.destinationPath('README.md'), {
         unitName: this.unitName,
         pluginName: this.pluginName,
-        description: this.description
+        description: this.description,
+        needsDocker: this.needsDocker
       }
     )
 
