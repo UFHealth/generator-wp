@@ -33,7 +33,7 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'pluginName',
-        message: 'The Plugin Name. Do not include UF Health or other unit name in the beginning.',
+        message: 'The Plugin Name.',
         //Defaults to the project's folder name if the input is skipped
         default: this.appname
       },
