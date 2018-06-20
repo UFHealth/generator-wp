@@ -180,7 +180,7 @@ module.exports = function (grunt) {
         }
 
       <% } %>
-      }
+      },
     <% } %>
 
 			/**
