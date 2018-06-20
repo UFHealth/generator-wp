@@ -49,7 +49,7 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'description',
-        message: 'Description',
+        message: 'Plugin Description',
         default: 'My awesome WordPress plugin'
       },
       {
