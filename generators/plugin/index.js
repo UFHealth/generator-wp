@@ -184,7 +184,9 @@ module.exports = class extends Generator {
       this.destinationPath('package.json'), {
         textDomain: this.textDomain,
         authorName: this.authorName,
-        repoLocation: this.repoLocation
+        repoLocation: this.repoLocation,
+        needsCSS: this.needsCSS,
+        needsJS: this.needsJS
       }
     )
 
