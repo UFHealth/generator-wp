@@ -55,6 +55,12 @@ For information on developing and using a generated plugin see the README.md fil
 
 ## Changelog
 
+##### 1.4
+* Allow plugin setup without CSS or JS support
+* Add Ouroboros-compatible Docker configuration to setup
+* Allow UF Health prefix to be optional on setup
+* Better handle plugin name, slug and other variables throughout the templates
+
 ##### 1.3.4
 * Add code coverage information
 
