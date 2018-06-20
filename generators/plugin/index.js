@@ -209,6 +209,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('_index.php'),
       this.destinationPath(this.textDomain + '.php'), {
+        unitName: this.unitName,
         pluginName: this.pluginName,
         description: this.description,
         projectHome: this.projectHome,
@@ -244,6 +245,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('_README.md'),
       this.destinationPath('README.md'), {
+        unitName: this.unitName,
         pluginName: this.pluginName,
         description: this.description
       }
@@ -252,6 +254,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('_uninstall.php'),
       this.destinationPath('uninstall.php'), {
+        unitName: this.unitName,
         pluginName: this.pluginName,
         packageName: this.packageName,
         authorName: this.authorName,
@@ -263,6 +266,7 @@ module.exports = class extends Generator {
       this.fs.copyTpl(
         this.templatePath('_plugin.scss'),
         this.destinationPath('assets/css/scss/' + this.textDomain + '.scss'), {
+          unitName: this.unitName,
           pluginName: this.pluginName,
           projectHome: this.projectHome,
           authorName: this.authorName
@@ -274,6 +278,7 @@ module.exports = class extends Generator {
       this.fs.copyTpl(
         this.templatePath('_plugin.js'),
         this.destinationPath('assets/js/src/' + this.textDomain + '.js'), {
+          unitName: this.unitName,
           pluginName: this.pluginName,
           projectHome: this.projectHome,
           authorName: this.authorName

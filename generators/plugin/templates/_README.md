@@ -1,4 +1,4 @@
-<%= pluginName %>
+<%if ( '' !== unitName ) { %><%= unitName %> <% } %><%= pluginName %>
 =============
 
 <%= description %>
