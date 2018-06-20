@@ -64,19 +64,22 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'authorName',
         message: 'Author name',
-        default: 'UF Health'
+        default: 'UF Health',
+        store: true
       },
       {
         type: 'input',
         name: 'authorEmail',
         message: 'Author email',
-        default: 'webservices@ahc.ufl.edu'
+        default: 'webservices@ahc.ufl.edu',
+        store: true
       },
       {
         type: 'input',
         name: 'authorUrl',
         message: 'Author URL',
-        default: 'http://webservices.ufhealth.org/'
+        default: 'http://webservices.ufhealth.org/',
+        store: true
       }
     ]
 
