@@ -83,7 +83,7 @@ module.exports = class extends Generator {
         message: 'Author URL',
         default: 'http://webservices.ufhealth.org/',
         store: true
-      }
+      },
       {
         type: 'confirm',
         name: 'needsDocker',
