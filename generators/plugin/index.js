@@ -146,10 +146,13 @@ module.exports = class extends Generator {
       this.destinationPath('.gitignore')
     )
 
-    this.fs.copy(
-      this.templatePath('_.jshintrc'),
-      this.destinationPath('.jshintrc')
-    )
+    if (true === this.needsJS) {
+
+      this.fs.copy(
+        this.templatePath('_.jshintrc'),
+        this.destinationPath('.jshintrc')
+      )
+    }
 
     this.fs.copy(
       this.templatePath('_.gitlab-ci.yml'),
@@ -244,23 +247,27 @@ module.exports = class extends Generator {
       }
     )
 
-    this.fs.copyTpl(
-      this.templatePath('_plugin.scss'),
-      this.destinationPath('assets/css/scss/' + this.textDomain + '.scss'), {
-        pluginName: this.pluginName,
-        projectHome: this.projectHome,
-        authorName: this.authorName
-      }
-    )
+    if (true === this.needsCSS) {
+      this.fs.copyTpl(
+        this.templatePath('_plugin.scss'),
+        this.destinationPath('assets/css/scss/' + this.textDomain + '.scss'), {
+          pluginName: this.pluginName,
+          projectHome: this.projectHome,
+          authorName: this.authorName
+        }
+      )
+    }
 
-    this.fs.copyTpl(
-      this.templatePath('_plugin.js'),
-      this.destinationPath('assets/js/src/' + this.textDomain + '.js'), {
-        pluginName: this.pluginName,
-        projectHome: this.projectHome,
-        authorName: this.authorName
-      }
-    )
+    if (true === this.needsJS) {
+      this.fs.copyTpl(
+        this.templatePath('_plugin.js'),
+        this.destinationPath('assets/js/src/' + this.textDomain + '.js'), {
+          pluginName: this.pluginName,
+          projectHome: this.projectHome,
+          authorName: this.authorName
+        }
+      )
+    }
 
   }
 
