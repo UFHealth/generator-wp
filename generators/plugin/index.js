@@ -84,6 +84,21 @@ module.exports = class extends Generator {
         default: 'http://webservices.ufhealth.org/',
         store: true
       }
+      {
+        type: 'confirm',
+        name: 'needsDocker',
+        message: 'Does this plugin need a Docker environment for development?',
+      },
+      {
+        type: 'confirm',
+        name: 'needsJS',
+        message: 'Does this plugin need processing for JavaScript?',
+      },
+      {
+        type: 'confirm',
+        name: 'needsCSS',
+        message: 'Does this plugin need processing for CSS/SCSS?',
+      }
     ]
 
     this.prompt(questions, function (response) {}).then((answers) => {
