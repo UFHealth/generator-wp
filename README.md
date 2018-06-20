@@ -33,9 +33,10 @@ For each project type you get:
 
 - Composer to manage server-side dependencies
 - NPM to manage development dependencies (like Grunt)
-- Grunt to streamline development
-- phpunit and [WP_Mock](https://github.com/10up/wp_mock) for PHP unit testing
-- A fully-fleshed out, namespaced setup for WordPress plugin development
+- Grunt to streamline JS and CSS assets
+- phpunit for PHP unit testing
+- A fully-fleshed out, name-spaced setup for WordPress plugin development
+- A Docker configuration, compatible with [Ouroboros](https://github.com/UFHealth/ouroboros), to get you actually working on code quickly.
 
 ### Plugin
 
