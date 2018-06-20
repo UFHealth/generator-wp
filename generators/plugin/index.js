@@ -332,7 +332,9 @@ module.exports = class extends Generator {
   end () {
 
     this.spawnCommandSync('grunt', [])
-    this.spawnCommandSync('git', ['init'])
+    if ( '' !== this.repoLocation ) {
+      this.spawnCommandSync('git', ['init'])
+    }
     this.spawnCommandSync('./vendor/bin/wp-enforcer', [])
 
   }
