@@ -189,6 +189,38 @@ module.exports = class extends Generator {
       this.destinationPath('tests/bin/install-wp-tests.sh')
     )
 
+    if (true === this.needsDocker) {
+
+      this.fs.copy(
+        this.templatePath('_wp'),
+        this.destinationPath('Docker/bin/wp')
+      )
+
+      this.fs.copy(
+        this.templatePath('_develop'),
+        this.destinationPath('develop')
+      )
+
+      this.fs.copy(
+        this.templatePath('_shell'),
+        this.destinationPath('Docker/bin/shell')
+      )
+
+      this.fs.copyTpl(
+        this.templatePath('_setup'),
+        this.destinationPath('Docker/bin/setup'), {
+          textDomain: this.textDomain
+        }
+      )
+
+      this.fs.copyTpl(
+        this.templatePath('_docker-compose.yml'),
+        this.destinationPath('docker-compose.yml'), {
+          textDomain: this.textDomain
+        }
+      )
+    }
+
     this.fs.copyTpl(
       this.templatePath('_package.json'),
       this.destinationPath('package.json'), {
