@@ -280,7 +280,8 @@ module.exports = class extends Generator {
         unitName: this.unitName,
         pluginName: this.pluginName,
         description: this.description,
-        needsDocker: this.needsDocker
+        needsDocker: this.needsDocker,
+        textDomain: this.textDomain,
       }
     )
 
