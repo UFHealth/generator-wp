@@ -26,6 +26,11 @@ module.exports = class extends Generator {
 
     const questions = [
       {
+        type: 'confirm',
+        name: 'forUFHealth',
+        message: 'Is this plugin for use on the UF Health multisite or Bridge network?',
+      },
+      {
         type: 'input',
         name: 'pluginName',
         message: 'The Plugin Name. Do not include UF Health or other unit name in the beginning.',
