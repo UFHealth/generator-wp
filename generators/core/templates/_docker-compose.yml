@@ -27,7 +27,6 @@ services:
       - mariadb
     volumes:
       - "./Docker/wordpress:/var/www/html"
-      - "./:/var/www/html/wp-content/plugins/<%= textDomain %>"
       - "./Docker/debug:/data/debug"
       - "./Docker/logs/php:/var/log/php-fpm"
     restart: always
@@ -44,14 +43,13 @@ services:
     image: ufhweb/apache:2.4
     volumes:
       - "./Docker/wordpress:/var/www/html"
-      - "./:/var/www/html/wp-content/plugins/<%= textDomain %>"
       - "./Docker/logs/httpd:/var/log/apache2"
     restart: always
     networks:
       - default
       - ouroboros_default
     labels:
-      - 'traefik.frontend.rule=Host:<%= textDomain %>.test'
-      - 'traefik.domain=<%= textDomain %>.test'
+      - 'traefik.frontend.rule=Host:wordpress.test'
+      - 'traefik.domain=wordpress.test'
       - 'traefik.enable=true'
       - 'traefik.docker.network=ouroboros_default'
