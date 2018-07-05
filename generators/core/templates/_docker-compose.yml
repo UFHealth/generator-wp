@@ -40,7 +40,7 @@ services:
   httpd:
     depends_on:
       - phpfpm
-    image: ufhweb/apache:2.4
+    image: ufhweb/apache:2.4<% if (true === multisite) { %>-wp-multi-subdir<% } %>
     volumes:
       - "./Docker/wordpress:/var/www/html"
       - "./Docker/logs/httpd:/var/log/apache2"

@@ -59,9 +59,11 @@ module.exports = class extends Generator {
       this.destinationPath('Docker/bin/shell')
     )
 
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath('_docker-compose.yml'),
-      this.destinationPath('docker-compose.yml')
+      this.destinationPath('docker-compose.yml'), {
+        multisite: this.multisite
+      }
     )
 
     this.fs.copyTpl(
