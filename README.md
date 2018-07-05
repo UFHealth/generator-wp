@@ -1,7 +1,7 @@
 UF Health WordPress Project Generator
 =================
 
-Generator-wp is a [Yeoman](http://yeoman.io) generator for generating a base WordPress plugin (with themes to come) for use on UF Health WordPress properties based, in part, on [generator-wp-make by 10up](https://github.com/10up/generator-wp-make).
+Generator-wp is a [Yeoman](http://yeoman.io) generator for generating a base WordPress plugin (with themes to come) or a test environment for WordPress itself for use on UF Health WordPress properties based, in part, on [generator-wp-make by 10up](https://github.com/10up/generator-wp-make).
 
 ## Installation
 
@@ -27,7 +27,7 @@ $ yo wp
 
 ## Usage
 
-generator-wp currently ships with one default project type, it is invoked with a subgenerator.
+generator-wp currently ships with te default project type, it is invoked with a subgenerator.
 
 For each project type you get:
 
@@ -45,15 +45,29 @@ This subgenerator scaffolds out a standard WordPress plugin.
 The project even includes some basic unit test examples to help get you started!
 
 ```
-$ cs [my-plugin-dir]
+$ cd [my-plugin-dir]
 $ yo wp:plugin
 ```
 
 For information on developing and using a generated plugin see the README.md file within after generating.
 
+### Core
+
+This subgenerator sets up a quick WordPress environment for testing or other use.
+
+```
+$ cd [the directory where you want to install WordPress]
+$ yo wp:core
+```
+
+After installation is complete bring up the local environment in Docker with the Develop script and run `./Docker/bin/setup`. WordPress will then be accessible at http://wordpress.test
+
 **More project types coming soon**
 
 ## Changelog
+
+##### 2.0
+* Added the wp:core command to install a quick test environment.
 
 ##### 1.4
 * Allow plugin setup without CSS or JS support
