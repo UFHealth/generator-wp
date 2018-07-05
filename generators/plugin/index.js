@@ -22,6 +22,7 @@ module.exports = class extends Generator {
       this.npmInstall(['grunt-contrib-clean'], {'save-dev': true})
       this.npmInstall(['grunt-contrib-watch'], {'save-dev': true})
       this.npmInstall(['grunt-sass'], {'save-dev': true})
+      this.npmInstall(['node-sass'], {'save-dev': true})
     }
 
     this.npmInstall(['grunt-wp-i18n'], {'save-dev': true})
