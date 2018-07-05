@@ -1,0 +1,10 @@
+{
+  "name": "<%= textDomain %>",
+  "private": true,
+  "author": "<%= authorName %>"<% if (repoLocation != "") { %>,
+  "repository": {
+    "type": "git",
+    "url": "<%= repoLocation %>"
+  }
+<% } %>
+}
