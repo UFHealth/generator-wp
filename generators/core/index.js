@@ -28,6 +28,22 @@ module.exports = class extends Generator {
 
   writing () {
 
+    if (true === this.multisite) {
+
+      this.fs.copy(
+        this.templatePath('_.htaccess-multisite'),
+        this.destinationPath('.htaccess')
+      )
+
+    } else {
+
+      this.fs.copy(
+        this.templatePath('_.htaccess'),
+        this.destinationPath('.htaccess')
+      )
+
+    }
+
     this.fs.copy(
       this.templatePath('_wp'),
       this.destinationPath('Docker/bin/wp')
