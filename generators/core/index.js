@@ -32,14 +32,14 @@ module.exports = class extends Generator {
 
       this.fs.copy(
         this.templatePath('_.htaccess-multisite'),
-        this.destinationPath('.htaccess')
+        this.destinationPath('Docker/wordpress/.htaccess')
       )
 
     } else {
 
       this.fs.copy(
         this.templatePath('_.htaccess'),
-        this.destinationPath('.htaccess')
+        this.destinationPath('Docker/wordpress/.htaccess')
       )
 
     }
