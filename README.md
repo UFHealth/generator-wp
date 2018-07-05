@@ -66,6 +66,9 @@ After installation is complete bring up the local environment in Docker with the
 
 ## Changelog
 
+##### 2.0.2
+* Fix .htaccess for multisite with a new apache image
+
 ##### 2.0.1
 * Make sure WordPress' rewrite rules are in place
 
