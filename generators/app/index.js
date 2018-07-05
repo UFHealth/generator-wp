@@ -8,6 +8,7 @@ module.exports = Base.extend(
 			this.log(chalk.magenta('Invoke a subgenerator to get started!'));
 			this.log('Available Modules:');
 			this.log(chalk.green('\tyo wp:plugin'));
+			this.log(chalk.green('\tyo wp:core'));
 		}
 	}
 );
