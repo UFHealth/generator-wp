@@ -66,6 +66,10 @@ After installation is complete bring up the local environment in Docker with the
 
 ## Changelog
 
+##### 2.1
+* Add scripts to enable and disable full-time listening for XDebug
+* Updated export to work in Linux as well as Mac
+
 ##### 2.0.2
 * Fix .htaccess for multisite with a new apache image
 
