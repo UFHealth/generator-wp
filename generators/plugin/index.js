@@ -207,6 +207,16 @@ module.exports = class extends Generator {
         this.destinationPath('Docker/bin/shell')
       )
 
+      this.fs.copy(
+        this.templatePath('_xlon'),
+        this.destinationPath('Docker/bin/xlon')
+      )
+
+      this.fs.copy(
+        this.templatePath('_xloff'),
+        this.destinationPath('Docker/bin/xloff')
+      )
+
       this.fs.copyTpl(
         this.templatePath('_setup'),
         this.destinationPath('Docker/bin/setup'), {
