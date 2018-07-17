@@ -66,6 +66,9 @@ After installation is complete bring up the local environment in Docker with the
 
 ## Changelog
 
+##### 2.1.2
+* Setup the appropriate domain for debugging with wp-cli
+
 ##### 2.1.1
 * Use appropriate user for XDebug scripts
 
