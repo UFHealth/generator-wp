@@ -194,7 +194,9 @@ module.exports = class extends Generator {
 
       this.fs.copy(
         this.templatePath('_wp'),
-        this.destinationPath('Docker/bin/wp')
+        this.destinationPath('Docker/bin/wp'), {
+          textDomain: this.textDomain
+        }
       )
 
       this.fs.copy(
